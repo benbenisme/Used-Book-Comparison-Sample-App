@@ -9,4 +9,4 @@ ReactDOM.render(
       <Route component={App}/>
     </Router>,    
   document.getElementById('root')
-);yar
+);
