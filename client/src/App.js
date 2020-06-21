@@ -88,22 +88,7 @@ import './App.css';
               <Jumbotron>
                 <h1 className="display-3">Kings Books</h1>
                 <p className="lead">Welcome to Kings Books, the online encyclopedia for books and reading material.</p>
-              </Jumbotron>
-
-              <p>{this.state.response}</p>
-              <form onSubmit={this.handleSubmit}>
-                <p>
-                  <strong>Post to Server:</strong>
-                </p>
-                <input
-                  type="text"
-                  value={this.state.post}
-                  onChange={e => this.setState({ post: e.target.value })}
-                />
-                <button type="submit">Submit</button>
-              </form>
-              <p>{this.state.responseToPost}</p>
-              
+              </Jumbotron>                
             </div>
           </Route>
 
