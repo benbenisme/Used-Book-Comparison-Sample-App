@@ -5,14 +5,11 @@ import {
     CardTitle,
     CardText,
     Button,
-} from 'reactstrap';
-import {
     Jumbotron,
     Container,
     Row,
     Col
-  } from 'reactstrap';
-import AmazonScrapper from '../../helpers/AmazonScrapper';
+} from 'reactstrap';
 
 export default function VolumePreview(props) {
     const volumeTitle = props.props.volumeResponse.volumeInfo.title;    
