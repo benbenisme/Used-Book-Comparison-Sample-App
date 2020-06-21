@@ -3,25 +3,13 @@ import {
     Card,
     CardBody,
     CardTitle,
-    CardText,
-    Button,
-} from 'reactstrap';
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    Link,
-    useParams, 
-    useHistory,
-    withRouter,
-    Redirect 
-} from "react-router-dom";
-import {
-    Jumbotron,
     Container,
     Row,
     Col
 } from 'reactstrap';
+import {
+    Link
+} from "react-router-dom";
 
 export default function VolumePreview(props) {   
     const volumeTitle = props.volumeResponse.volumeInfo.title;   

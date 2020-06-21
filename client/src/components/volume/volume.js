@@ -1,14 +1,6 @@
 import React from 'react';
 import {
-    Card,
-    CardBody,
-    CardTitle,
-    CardText,
-    Button,
-    Jumbotron,
-    Container,
-    Row,
-    Col
+    Jumbotron
 } from 'reactstrap';
 
 export default function VolumePreview(props) {

@@ -1,8 +1,9 @@
 import React from 'react';
-import Toolbar from './toolbar/toolbar';
-import BackButton from './back-button/back-button';
-import BrowseSearchBar from './browse-search/browse-search-bar';
-import VolumePreview from './volume-preview/volume-preview';
+import Toolbar from './components/toolbar/toolbar';
+import BackButton from './components/back-button/back-button';
+import BrowseSearchBar from './components/browse-search/browse-search-bar';
+import VolumePreview from './components/volume-preview/volume-preview';
+import Volume from './components/volume/volume';
 import {
   Jumbotron,
   Container,
@@ -13,7 +14,6 @@ import {
   Route,
   withRouter
 } from "react-router-dom";
-import Volume from './volume/volume';
 import './App.css';
 
  class App extends React.Component {
