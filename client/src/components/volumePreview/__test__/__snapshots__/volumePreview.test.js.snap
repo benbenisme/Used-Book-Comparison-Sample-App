@@ -1,0 +1,56 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<div
+  className="volumePreviewStyle"
+  data-testid="volumePreview"
+>
+  <a
+    href="/volume"
+    onClick={[Function]}
+  >
+    <div
+      className="container-fluid"
+    >
+      <div
+        className="row"
+      >
+        <div
+          className="col-sm-12 col-md-3 offset-md-3"
+          data-testid="volumePreviewThumbnail"
+        />
+        <div
+          className="col-sm-12 col-md-3"
+        >
+          <div
+            className="card"
+          >
+            <div
+              className="card-body"
+            >
+              <div
+                className="card-title"
+                data-testid="volumePreviewTitle"
+              >
+                test title
+              </div>
+              <h6
+                className="mb-2 text-muted card-subtitle"
+                data-testid="volumePreviewAuthors"
+              >
+                test author
+              </h6>
+              <p
+                className="card-text"
+                data-testid="volumePreviewDescription"
+              >
+                test description
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </a>
+</div>
+`;

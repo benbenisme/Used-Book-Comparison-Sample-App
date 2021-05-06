@@ -44,15 +44,16 @@ export default function BrowseSearchBar({props, onSearch}) {
       <div className={classes.searchIcon}>              
       </div>
       <InputBase
-        placeholder="Search…"
+        style={{border: "1px solid gray", padding: "0.2em", paddingLeft: "0.5em", margin:"0.5em"}}  
+        placeholder="Enter search terms..."
         classes={{
           root: classes.inputRoot,
           input: classes.inputInput,
         }}
         inputProps={{ 'aria-label': 'search' }}
-        onChange={(e) => setSearchTerms(e.target.value)}/>
-      <SearchIcon />
-      <Button onClick={handleSearch}>Search</Button>
+        onChange={(e) => setSearchTerms(e.target.value)}        
+        />      
+      <Button variant="outlined" onClick={handleSearch}>Search<SearchIcon style={{paddingLeft: "0.2em"}}/></Button>
     </div>
     );      
 }

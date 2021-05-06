@@ -25,19 +25,19 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function ButtonAppBar(props) {
+const Header = () => {
     const classes = useStyles();
-
     return (
         <div className={classes.root}>
             <AppBar position="static">
                 <Toolbar>
-                    <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+                    <IconButton edge="start" className={classes.menuButton} style={{color: "white"}} aria-label="menu">
                         <MenuIcon />  
                     </IconButton>
-                    <Button color="inherit"><Link to="/browse">Browse</Link></Button>
+                    <Button style={{color: "white"}}><Link style={{ textDecoration: 'none', color: "white" }} to="/browse">Browse</Link></Button>
                 </Toolbar>
             </AppBar>
         </div>
     );
 }
+export default Header

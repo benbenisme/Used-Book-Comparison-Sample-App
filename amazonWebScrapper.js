@@ -5,7 +5,7 @@ async function webscrapAmazon (searchTerms) {
     // const searchTerms = props.searchTerms;
     const url = 'https://www.amazon.co.uk/';
     console.log("inside webscrapper");
-    const amazonVolumeListings = {"listings": [{}]};
+    let amazonVolumeListings = [];
 
     try {
     var browser = await puppeteer.launch();
@@ -43,25 +43,32 @@ async function webscrapAmazon (searchTerms) {
         await page.waitForSelector('.olpOfferPrice');
 
         // const listings = await page.evaluate(() => document.querySelectorAll('.olpOffer'));
-        const listingPrimaryPrices = await page.evaluate(() => Array.from(document.querySelectorAll('.olpOfferPrice'), element => element.textContent));
+        const listingPrimaryPrices = await page.evaluate(() => Array.from(document.querySelectorAll('.olpOfferPrice'), element => element.textContent.match(/£([\s\S]*?)\s/)[1]));
         console.log(listingPrimaryPrices);
 
         const listingShippingPrices = await page.evaluate(() => Array.from(document.querySelectorAll('.olpShippingInfo'), element => {
             return element.querySelector('.olpShippingPrice') !== null ? element.querySelector('.olpShippingPrice').textContent : '0';
         }));      
         console.log(listingShippingPrices)
-    
+
+        const listingConditions = await page.evaluate(() => Array.from(document.querySelectorAll('.olpCondition'), element => element.textContent.match(/-\s([\s\S]*?)\n/)[1]));
+        console.log(listingConditions);  
+        
+        amazonVolumeListings = listingPrimaryPrices.map((listingPrimaryPrice, index) => 
+        ({primaryPrice: listingPrimaryPrice, shippingPrice: listingShippingPrices[index], condition: listingConditions[0]}));
+
+        console.log(amazonVolumeListings);
     }    
 
     await page.close();
     await browser.close();
 
-    // return amazonVolumeListings;
+    return amazonVolumeListings;
 
     } catch (e) {
         console.log(e);
         await browser.close();
-        // return 'No listings';
+        return amazonVolumeListings;
     }
 }
 
