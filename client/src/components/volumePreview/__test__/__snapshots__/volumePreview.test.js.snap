@@ -6,8 +6,14 @@ exports[`matches snapshot 1`] = `
   data-testid="volumePreview"
 >
   <a
-    href="/volume"
+    href="/browse/volume"
     onClick={[Function]}
+    style={
+      Object {
+        "color": "black",
+        "textDecoration": "none",
+      }
+    }
   >
     <div
       className="container-fluid"
@@ -44,7 +50,7 @@ exports[`matches snapshot 1`] = `
                 className="card-text"
                 data-testid="volumePreviewDescription"
               >
-                test description
+                test description...
               </p>
             </div>
           </div>

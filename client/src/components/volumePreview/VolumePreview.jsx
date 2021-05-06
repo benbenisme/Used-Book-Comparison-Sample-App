@@ -12,12 +12,8 @@ import {
 import {
     Link
 } from "react-router-dom";
-import { useStores } from '../../state/index';
-// import "./volumePreview.css"
 
-
-export default function     VolumePreview(props) {
-    const { volumeStore } = useStores();
+export default function VolumePreview(props) {
 
     const volumeTitle = props.volumeResponse.volumeInfo.title;
     const volumeDescription = props.volumeResponse.volumeInfo.description?.substring(0, 200).concat("...") || "";
@@ -26,7 +22,7 @@ export default function     VolumePreview(props) {
     const volumeThumbnail = imageLinks ? imageLinks.thumbnail : "";
 
     const setVolumeInStore = () => {
-        volumeStore.setVolume(props.volumeResponse);
+        props.setVolume(props.volumeResponse);
     }
 
     return (

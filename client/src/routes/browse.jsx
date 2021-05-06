@@ -13,6 +13,7 @@ import {
 const BrowseRoute = () => {
     const [searchResults, setSearchResults] = useState(undefined);
     const [loading, setLoading] = useState(false);
+    const { volumeStore } = useStores();
 
     const search = async (searchTerms) => {
         try {
@@ -29,6 +30,10 @@ const BrowseRoute = () => {
             console.error(error);
             setLoading(false);
         }
+    }
+
+    const setVolumeInStore = (volumeInfo) => {
+        volumeStore.setVolume(volumeInfo);
     }
 
     return (
@@ -48,6 +53,7 @@ const BrowseRoute = () => {
                                                 <VolumePreview
                                                     key={`VolumePreview-${index}`}
                                                     volumeResponse={searchResult}
+                                                    setVolume={(volumeInfo) => setVolumeInStore(volumeInfo)}
                                                 />
                                             </Grid>
                                         )
