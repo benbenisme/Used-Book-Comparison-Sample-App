@@ -19,8 +19,8 @@ async function webscrapAmazon (searchTerms) {
     await page.waitForSelector('#nav-search #twotabsearchtextbox');
     await page.click('#nav-search #twotabsearchtextbox');
     await page.$eval('#nav-search #twotabsearchtextbox', (el, value) => el.value = value, searchTerms);
-    await page.waitForSelector('#nav-search > .nav-searchbar > .nav-right > .nav-search-submit > .nav-input');
-    await page.click('#nav-search > .nav-searchbar > .nav-right > .nav-search-submit > .nav-input');
+    await page.waitForSelector('#nav-search > .nav-searchbar > .nav-right > .nav-search-submit > .nav-search-submit-text > .nav-input');
+    await page.click('#nav-search > .nav-searchbar > .nav-right > .nav-search-submit > .nav-search-submit-text > .nav-input');
     
     await navigationPromise;
     
@@ -34,28 +34,28 @@ async function webscrapAmazon (searchTerms) {
     console.log(textContent);
 
     // click on used    
-    if (await page.waitForSelector('.swatchElement > .a-list-item > .tmm-olp-links > .olp-used > .a-size-mini') !== null) 
+    if (await page.waitForSelector('.swatchElement > .a-list-item > .tmm-olp-links > .olp-used > .a-declarative > .a-size-mini') !== null) 
     {        
-        await page.click('.swatchElement > .a-list-item > .tmm-olp-links > .olp-used > .a-size-mini');
+        await page.click('.swatchElement > .a-list-item > .tmm-olp-links > .olp-used > .a-declarative > .a-size-mini');
   
         await navigationPromise;   
         
-        await page.waitForSelector('.olpOfferPrice');
+        await page.waitForSelector('.a-price > .a-offscreen');
 
         // const listings = await page.evaluate(() => document.querySelectorAll('.olpOffer'));
-        const listingPrimaryPrices = await page.evaluate(() => Array.from(document.querySelectorAll('.olpOfferPrice'), element => element.textContent.match(/£([\s\S]*?)\s/)[1]));
+        const listingPrimaryPrices = await page.evaluate(() => Array.from(document.querySelectorAll('.a-price > .a-offscreen'), element => element.textContent.match(/\£((?:\d|\,)*\.?\d+)/g)[0]));
         console.log(listingPrimaryPrices);
 
-        const listingShippingPrices = await page.evaluate(() => Array.from(document.querySelectorAll('.olpShippingInfo'), element => {
-            return element.querySelector('.olpShippingPrice') !== null ? element.querySelector('.olpShippingPrice').textContent : '0';
+        const listingShippingPrices = await page.evaluate(() => Array.from(document.querySelectorAll('.dynamicDeliveryMessage'), element => {
+            return element.querySelector('.ddmDeliveryMessage') !== null ? element.querySelector('.ddmDeliveryMessage').textContent.match(/\£((?:\d|\,)*\.?\d+)/g)[0] : '0';
         }));      
         console.log(listingShippingPrices)
 
-        const listingConditions = await page.evaluate(() => Array.from(document.querySelectorAll('.olpCondition'), element => element.textContent.match(/-\s([\s\S]*?)\n/)[1]));
+        const listingConditions = await page.evaluate(() => Array.from(document.querySelectorAll('.aod-offer-heading'), element => element.textContent.match(/-\s([\s\S]*?)\n/)[0]));
         console.log(listingConditions);  
         
         amazonVolumeListings = listingPrimaryPrices.map((listingPrimaryPrice, index) => 
-        ({primaryPrice: listingPrimaryPrice, shippingPrice: listingShippingPrices[index], condition: listingConditions[0]}));
+        ({primaryPrice: listingPrimaryPrice, shippingPrice: listingShippingPrices[index], condition: ""}));
 
         console.log(amazonVolumeListings);
     }    

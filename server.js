@@ -16,10 +16,10 @@ app.post('/api/world', (req, res) => {
   );
 });
 
-app.post('/api/priceSearch', (req, res) => {
+app.post('/api/priceSearch', async (req, res) => {
   console.log(req.body);
   console.log(req.body.post.isbn_13);
-  const scrappingResponse = amazonWebScrapper.webscrapAmazon(req.body.post.isbn_13);
+  const scrappingResponse = await amazonWebScrapper.webscrapAmazon(req.body.post.isbn_13);
   res.send(
     scrappingResponse
   );
